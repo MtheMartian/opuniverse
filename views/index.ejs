@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="css/style.css">
   <title>OP Universe</title>
 </head>
 <body>
@@ -13,8 +13,29 @@
     <input type="text" placeholder="Character Age" name="charAge">
     <input type="text" placeholder="Type or Haki" name="type">
     <input type="text" placeholder="Image URL" name="imgURL">
-    <input type="submit">
+    <input id="addChar" type="submit">
   </form>
-  <script src="/static/main.js"></script>
+
+  <section>
+    <% for(let i = 0; i < info.length; i++){%>
+      <div class="charCard">
+        <img src=<%=info[i].imgURL%>>
+        <span><%=info[i].charName%></span>
+        <span><%=info[i].charAge%></span>
+        <span><%=info[i].type%></span>
+      </div>
+      <button class="updateFormBtn" id=<%=info[i]._id%>>Edit</button>
+    <%}%>
+  </section>
+
+  <form class="hidden" id="updateChar" action="/updateChar" method="PUT">
+    <input type="text" placeholder="Character Name" name="charName">
+    <input type="text" placeholder="Character Age" name="charAge">
+    <input type="text" placeholder="Type or Haki" name="type">
+    <input type="text" placeholder="Image URL" name="imgURL">
+    <input id="updateCharBtn" type="submit">
+  </form>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
